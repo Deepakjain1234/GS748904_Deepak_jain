@@ -110,7 +110,7 @@ export default function Dashboard() {
     setAnchorEl(null);
   };
 
-  if (isAuthenticated) {
+  if (!isAuthenticated) {
     return (
       <Box
         sx={{
