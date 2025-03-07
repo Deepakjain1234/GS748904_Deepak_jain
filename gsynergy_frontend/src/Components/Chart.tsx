@@ -26,13 +26,18 @@ ChartJS.register(
 );
 
 const GMChart: React.FC = () => {
+  // Fetch GM data from Redux store
   const gmData = useAppSelector((state) => state.gmData);
+  
+  // State to manage chart type selection
   const [chartType, setChartType] = useState<"bar" | "line" | "mixed">("mixed");
 
+  // Extract data for chart labels and datasets
   const labels = gmData.map((d: { week: any }) => d.week);
   const gmDollars = gmData.map((d: { gmDollars: any }) => d.gmDollars);
   const gmPercent = gmData.map((d: { gmPercent: any }) => d.gmPercent);
 
+  // Function to generate chart data based on selected type
   const getChartData = () => {
     if (chartType === "mixed") {
       return {
@@ -74,6 +79,7 @@ const GMChart: React.FC = () => {
     };
   };
 
+  // Chart configuration options
   const options = {
     responsive: true,
     scales: {
@@ -85,7 +91,7 @@ const GMChart: React.FC = () => {
         beginAtZero: true,
         position: "right" as const,
         title: { display: true, text: "GM %" },
-        grid: { drawOnChartArea: false },
+        grid: { drawOnChartArea: false }, // Prevents overlap of grid lines
       },
     },
     plugins: {
@@ -130,6 +136,7 @@ const GMChart: React.FC = () => {
           boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
         }}
       >
+        {/* Render the chart based on selected type */}
         <Chart type={chartType === "mixed" ? "bar" : chartType} data={getChartData()} options={options} />
       </div>
     </div>

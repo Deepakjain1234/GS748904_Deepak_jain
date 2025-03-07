@@ -33,7 +33,10 @@
 .css-27y8xl-MuiToolbar-root{
   background-color: white;
 }
-
+.MuiToolbar-root 
+{
+  background-color: white !important
+}
 .css-1f0s1m3 {
   padding: 0px !important;
 }
