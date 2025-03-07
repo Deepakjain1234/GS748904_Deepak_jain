@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useAppSelector } from "../redux/hooks";
 import {
   Chart as ChartJS,
+  BarController,
   BarElement,
+  LineController,
   LineElement,
   CategoryScale,
   LinearScale,
@@ -15,7 +17,9 @@ import { Chart } from "react-chartjs-2";
 
 // Register Chart.js components
 ChartJS.register(
+  BarController,
   BarElement,
+  LineController,
   LineElement,
   CategoryScale,
   LinearScale,
