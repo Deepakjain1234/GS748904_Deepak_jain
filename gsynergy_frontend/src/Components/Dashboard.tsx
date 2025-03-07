@@ -26,7 +26,6 @@ import {
   ChevronLeft as ChevronLeftIcon,
   ChevronRight as ChevronRightIcon,
   AccountCircle as AccountCircleIcon,
-  Inbox as InboxIcon,
   Mail as MailIcon,
   Store as StoreIcon,
   BarChart as BarIcon,
@@ -207,10 +206,10 @@ export default function Dashboard() {
           {list.map((text, index) => (
             <ListItem key={text} disablePadding>
               <ListItemButton onClick={() => setCurrent(text)}>
-                <ListItemIcon>  {index==0 && <StoreIcon />}
-                  {index==1 && <MailIcon />}
-                  {index==2 && <BarIcon />}
-                  {index==3 && <MultiChart />}
+                <ListItemIcon>  {index===0 && <StoreIcon />}
+                  {index===1 && <MailIcon />}
+                  {index===2 && <BarIcon />}
+                  {index===3 && <MultiChart />}
                 </ListItemIcon>
                 <ListItemText primary={text} />
               </ListItemButton>
