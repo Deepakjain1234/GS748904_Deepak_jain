@@ -43,23 +43,45 @@ const Sku = () => {
 
   // Column Definitions for AG Grid
   const [colDefs] = useState<ColDef[]>([
-    
-    { field: "id", headerName: "ID" },
-    { field: "label", headerName: "SKU Name" },
-    { field: "class", headerName: "Class" },
-    { field: "department", headerName: "Department" },
-    { field: "price", headerName: "Price", filter: "agNumberColumnFilter" },
-    { field: "cost", headerName: "Cost", filter: "agNumberColumnFilter" },
+    { field: "id", headerName: "ID", width: 200 },
+    { field: "label", headerName: "SKU Name", width: 200 },
+    { field: "class", headerName: "Class", width: 150 },
+    { field: "department", headerName: "Department", width: 150 },
+    { field: "price", headerName: "Price", filter: "agNumberColumnFilter", width: 120 },
+    { field: "cost", headerName: "Cost", filter: "agNumberColumnFilter", width: 120 },
     {
       field: "actions",
       headerName: "Actions",
+      width: 200,
       cellRenderer: (params: any) => (
-        <>
-          <button onClick={() => handleEdit(params.data)}>Edit</button>
-          <button onClick={() => dispatch(deleteSku(params.data.id))}>
+        <div style={{ display: "flex", gap: "10px", justifyContent: "center" }}>
+          <button
+            style={{
+              backgroundColor: "#4CAF50",
+              color: "white",
+              border: "none",
+              padding: "5px 10px",
+              cursor: "pointer",
+              borderRadius: "4px",
+            }}
+            onClick={() => handleEdit(params.data)}
+          >
+            Edit
+          </button>
+          <button
+            style={{
+              backgroundColor: "#F44336",
+              color: "white",
+              border: "none",
+              padding: "5px 10px",
+              cursor: "pointer",
+              borderRadius: "4px",
+            }}
+            onClick={() => dispatch(deleteSku(params.data.id))}
+          >
             Delete
           </button>
-        </>
+        </div>
       ),
     },
   ]);
@@ -70,6 +92,7 @@ const Sku = () => {
       filter: true,
       sortable: true,
       resizable: true,
+      cellStyle: { textAlign: "left" }, // Center text in all cells
     }),
     []
   );
@@ -105,17 +128,23 @@ const Sku = () => {
   };
 
   return (
-    <div style={{ width: "100%", height: "100vh", padding: "20px" }}>
-      <h1>SKU List</h1>
+    <div style={{ width: "100%", height: "100vh", padding: "20px", backgroundColor: "#f5f5f5" }}>
+      <h1 style={{ textAlign: "center", color: "#333" }}>SKU List</h1>
 
       {/* Form for Adding / Updating SKU */}
-      {/* <div style={{ marginBottom: "20px" }}>
+      <div style={{ marginBottom: "20px", display: "flex", gap: "10px", justifyContent: "center" }}>
         <input
           type="text"
           name="label"
           placeholder="SKU Name"
           value={skuData.label}
           onChange={handleChange}
+          style={{
+            padding: "8px",
+            borderRadius: "4px",
+            border: "1px solid #ccc",
+            width: "150px",
+          }}
         />
         <input
           type="text"
@@ -123,6 +152,12 @@ const Sku = () => {
           placeholder="Class"
           value={skuData.class}
           onChange={handleChange}
+          style={{
+            padding: "8px",
+            borderRadius: "4px",
+            border: "1px solid #ccc",
+            width: "120px",
+          }}
         />
         <input
           type="text"
@@ -130,6 +165,12 @@ const Sku = () => {
           placeholder="Department"
           value={skuData.department}
           onChange={handleChange}
+          style={{
+            padding: "8px",
+            borderRadius: "4px",
+            border: "1px solid #ccc",
+            width: "120px",
+          }}
         />
         <input
           type="number"
@@ -137,6 +178,12 @@ const Sku = () => {
           placeholder="Price"
           value={skuData.price}
           onChange={handleChange}
+          style={{
+            padding: "8px",
+            borderRadius: "4px",
+            border: "1px solid #ccc",
+            width: "100px",
+          }}
         />
         <input
           type="number"
@@ -144,20 +191,38 @@ const Sku = () => {
           placeholder="Cost"
           value={skuData.cost}
           onChange={handleChange}
+          style={{
+            padding: "8px",
+            borderRadius: "4px",
+            border: "1px solid #ccc",
+            width: "100px",
+          }}
         />
-        <button onClick={handleSubmit}>
+        <button
+          onClick={handleSubmit}
+          style={{
+            padding: "8px 12px",
+            backgroundColor: editMode ? "#FFC107" : "#007BFF",
+            color: "white",
+            border: "none",
+            cursor: "pointer",
+            borderRadius: "4px",
+          }}
+        >
           {editMode ? "Update SKU" : "Add SKU"}
         </button>
-      </div> */}
+      </div>
 
       {/* AG Grid Displaying SKU Data */}
-      <div className="ag-theme-alpine" style={{ height: 500, width: "100%" }}>
+      <div className="ag-theme-alpine" style={{ height: 500, width: "100%", borderRadius: "8px", overflow: "hidden" }}>
         <AgGridReact
           rowData={skus}
           columnDefs={colDefs}
           defaultColDef={defaultColDef}
           pagination={true}
-          paginationPageSize={10}
+          paginationPageSize={50}
+          
+          rowHeight={40} // Increase row height for better readability
         />
       </div>
     </div>

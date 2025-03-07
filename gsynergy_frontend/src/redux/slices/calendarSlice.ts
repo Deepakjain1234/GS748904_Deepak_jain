@@ -80,6 +80,6 @@ const calendarSlice = createSlice({
     },
   },
 });
-
+ 
 export const { addCalendarEntry } = calendarSlice.actions;
 export default calendarSlice.reducer;

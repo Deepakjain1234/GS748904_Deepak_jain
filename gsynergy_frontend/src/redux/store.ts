@@ -3,12 +3,14 @@ import storeReducer from "./slices/storeSlice";
 import skuReducer from "./slices/skuSlice"; 
 // import planningReducer from './slices/planningSlice';
 import gmReducer from "./slices/gmSlice";
+import calendarReducer from './slices/calendarSlice'
 export const store = configureStore({
   reducer: {
     store: storeReducer,
     sku: skuReducer, 
     gmData: gmReducer,
-    // planning: planningReducer,
+    calander:calendarReducer
+    
   },
 });
 

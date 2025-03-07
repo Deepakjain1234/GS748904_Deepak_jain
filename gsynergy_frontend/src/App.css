@@ -27,7 +27,26 @@
 .App-link {
   color: #61dafb;
 }
+.css-1ygil4i-MuiToolbar-root{
+  background-color: white;
+}
+.css-27y8xl-MuiToolbar-root{
+  background-color: white;
+}
 
+.css-1f0s1m3 {
+  padding: 0px !important;
+}
+.css-k008qs {
+  width: 100%;
+
+}
+.css-16pyy2p{
+  width: 100%;
+}
+.css-1xlro2s {
+padding: 0px !important;
+}
 @keyframes App-logo-spin {
   from {
     transform: rotate(0deg);
